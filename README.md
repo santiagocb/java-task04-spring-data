@@ -1,15 +1,15 @@
-# Java Spring core
-The target of this exercise is to practice Spring core with Java 17.
+# Java Spring Data Access
+The target of this exercise is to practice Spring Data Access with Java 17.
 
 ## Features
-- Component scanning
-- Annotations and DI with @Service @Autowired @Bean @Configuration @Value
-- Read raws from CSV file
-- Unit and SVC tests
 
-## Tests
-Tests were written mainly to verify that context was built successfully with all beans included.
-Some of the tests mix those validations with business validations. Please understand, I am just learning Spring-core.
+## Requirements
+- Install Docker
+- Download Postgres Docker image
+- Install psql client
 
-## Links
-- https://springframework.guru/best-practices-for-dependency-injection-with-spring/
+## Run the project
+1. Run postgres through Docker with following command: `docker run --rm --name lil-postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres`
+2. Run psql command to create DB: `psql -h localhost -U postgres -f database.sql` and enter the password: `password`
+3. Run Main program.
+4. Run command to stop Docker execution: `docker stop lil-postgres`
