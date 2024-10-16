@@ -3,6 +3,8 @@ package com.ticketland.config;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 @Component
 public class DatabaseSetup {
 
@@ -12,6 +14,7 @@ public class DatabaseSetup {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @PostConstruct
     public void createTables() {
         jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS users (" +
                 "id VARCHAR(255) PRIMARY KEY, " +

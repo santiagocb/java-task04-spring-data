@@ -37,14 +37,33 @@ public class BookingFacade {
         if (account.getBalance() < event.getTicketPrice()) {
             throw new InsufficientFundsException("Insufficient funds to book the ticket.");
         }
-        account.setBalance(account.getBalance() - event.getTicketPrice());
-        userAccountService.refillBalance(userId, event.getTicketPrice() * -1);  // Save the updated balance
+        userAccountService.refillBalance(userId, event.getTicketPrice() * -1);
 
         ticketService.generate(new Ticket(account, event));
     }
 
     @Transactional
+    public void createAccount(String userId) {
+        userAccountService.createAccount(userId);
+    }
+
+    @Transactional
     public void refillAccount(String userId, double amount) {
         userAccountService.refillBalance(userId, amount);
+    }
+
+    public void showAllUserAccounts() {
+        System.out.println("All user accounts: ");
+        userAccountService.findAll().forEach(u -> System.out.println(u.getId() + " Balance:" + u.getBalance() + " User:" + u.getUser().getName()));
+    }
+
+    public void showAllTickets() {
+        System.out.println("All tickets: ");
+        ticketService.findAll().forEach(t -> System.out.println(t.getId() + " User:" + t.getUser().getId() + " Event:" + t.getEvent().getId()));
+    }
+
+    public void showAllEvents() {
+        System.out.println("All events: ");
+        eventService.findAll().forEach(e -> System.out.println(e.getId() + " " + e.getName() + " " + e.getTicketPrice()));
     }
 }

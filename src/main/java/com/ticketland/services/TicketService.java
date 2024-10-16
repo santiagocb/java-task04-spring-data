@@ -17,23 +17,19 @@ public class TicketService {
     @Autowired
     private TicketRepository ticketRepository;
 
-    @Transactional
     public void generate(Ticket ticket) {
         ticketRepository.save(ticket);
     }
 
-    @Transactional()
     public Ticket findTicketById(String ticketId) {
         return ticketRepository.findById(ticketId)
                 .orElseThrow(() -> new UserNotFoundException("Ticket not found."));
     }
 
-    @Transactional()
     public List<Ticket> findTicketsByAccountUserId(String userAccountId) {
         return ticketRepository.findTicketsByUserAccountId(userAccountId);
     }
 
-    @Transactional
     public List<Ticket> findAll() {
         return StreamSupport.stream(ticketRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
