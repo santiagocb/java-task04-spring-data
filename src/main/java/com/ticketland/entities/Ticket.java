@@ -1,39 +1,46 @@
 package com.ticketland.entities;
 
 import javax.persistence.*;
+import java.util.UUID;
 
-/* @Entity
+@Entity
+@Table(name = "tickets")
 public class Ticket {
     @Id
     private String id;
 
     @ManyToOne
+    @JoinColumn(name = "userAccountId")
     private UserAccount userAccount;
+
+    @ManyToOne
+    @JoinColumn(name = "eventId")
+    private Event event;
+
 
     public Ticket() {
     }
 
-    public Ticket(String id, UserAccount userAccount) {
-        this.id = id;
+    public Ticket(UserAccount userAccount, Event event) {
+        this.id = generateRandomTicketNumber();
         this.userAccount = userAccount;
+        this.event = event;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public UserAccount getUser() {
         return userAccount;
     }
 
-    public void setUser(UserAccount userAccount) {
-        this.userAccount = userAccount;
+    public Event getEvent() {
+        return event;
     }
 
-    // Getters and setters, constructors
-} */
 
+    private String generateRandomTicketNumber() {
+        return "TICKET_" + UUID.randomUUID();
+    }
+}

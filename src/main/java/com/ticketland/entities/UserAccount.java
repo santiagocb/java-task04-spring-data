@@ -27,9 +27,6 @@ public class UserAccount {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public double getBalance() {
         return balance;
@@ -43,7 +40,4 @@ public class UserAccount {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

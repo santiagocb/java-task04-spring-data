@@ -30,9 +30,17 @@ public class DatabaseSetup {
                 "place VARCHAR(255)," +
                 "date DATE," +
                 "ticketPrice NUMERIC(10, 2))");
+
+        jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS tickets (" +
+                "id VARCHAR(255) PRIMARY KEY," +
+                "userAccountId VARCHAR(255)," +
+                "eventId VARCHAR(255)," +
+                "FOREIGN KEY (eventId) REFERENCES events(id)," +
+                "FOREIGN KEY (userAccountId) REFERENCES user_accounts(id))");
     }
 
     public void dropTables() {
+        jdbcTemplate.execute("DROP TABLE IF EXISTS tickets");
         jdbcTemplate.execute("DROP TABLE IF EXISTS user_accounts");
         jdbcTemplate.execute("DROP TABLE IF EXISTS users");
         jdbcTemplate.execute("DROP TABLE IF EXISTS events");

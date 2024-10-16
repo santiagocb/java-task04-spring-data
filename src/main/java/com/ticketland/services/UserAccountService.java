@@ -18,9 +18,9 @@ public class UserAccountService {
     private UserService userService;
 
     @Transactional
-    public void createAccount(String userId) {
+    public UserAccount createAccount(String userId) {
         var user = userService.getById(userId);
-        userAccountRepository.save(new UserAccount(userId, 0, user));
+        return userAccountRepository.save(new UserAccount(userId, 0, user));
     }
 
     @Transactional
