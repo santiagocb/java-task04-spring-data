@@ -2,9 +2,11 @@ package com.ticketland.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
-/* @Entity
+@Entity
+@Table(name = "events")
 public class Event {
     @Id
     private String id;
@@ -16,6 +18,9 @@ public class Event {
     private LocalDate date;
 
     private double ticketPrice;
+
+    public Event() {
+    }
 
     public Event(String id, String name, String place, LocalDate date, double ticketPrice) {
         this.id = id;
@@ -64,5 +69,5 @@ public class Event {
     public void setTicketPrice(double ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
-} */
+}
 

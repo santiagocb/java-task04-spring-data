@@ -11,7 +11,7 @@ public class UserAccount {
     private double balance;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "userId")
     private User user;
 
     public UserAccount() {
@@ -46,6 +46,4 @@ public class UserAccount {
     public void setUser(User user) {
         this.user = user;
     }
-
-    // Getters and setters, constructors
 }

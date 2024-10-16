@@ -1,8 +1,6 @@
 package com.ticketland.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /* @Entity
 public class Ticket {
@@ -10,11 +8,14 @@ public class Ticket {
     private String id;
 
     @ManyToOne
-    private User user;
+    private UserAccount userAccount;
 
-    public Ticket(String id, User user) {
+    public Ticket() {
+    }
+
+    public Ticket(String id, UserAccount userAccount) {
         this.id = id;
-        this.user = user;
+        this.userAccount = userAccount;
     }
 
     public String getId() {
@@ -25,12 +26,12 @@ public class Ticket {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public UserAccount getUser() {
+        return userAccount;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(UserAccount userAccount) {
+        this.userAccount = userAccount;
     }
 
     // Getters and setters, constructors
