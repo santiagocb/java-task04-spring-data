@@ -1,9 +1,8 @@
 package com.ticketland.services;
 
+import com.ticketland.entities.UserAccount;
 import com.ticketland.exceptions.UserNotFoundException;
 import com.ticketland.repos.UserAccountRepository;
-import com.ticketland.entities.UserAccount;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +12,14 @@ import java.util.stream.StreamSupport;
 @Service
 public class UserAccountService {
 
-    @Autowired
     private UserAccountRepository userAccountRepository;
 
-    @Autowired
     private UserService userService;
+
+    public UserAccountService(UserAccountRepository userAccountRepository, UserService userService) {
+        this.userAccountRepository = userAccountRepository;
+        this.userService = userService;
+    }
 
     public UserAccount createAccount(String userId) {
         var user = userService.getById(userId);

@@ -3,10 +3,8 @@ package com.ticketland.services;
 import com.ticketland.entities.Ticket;
 import com.ticketland.exceptions.UserNotFoundException;
 import com.ticketland.repos.TicketRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -14,8 +12,11 @@ import java.util.stream.StreamSupport;
 @Service
 public class TicketService {
 
-    @Autowired
     private TicketRepository ticketRepository;
+
+    public TicketService(TicketRepository ticketRepository) {
+        this.ticketRepository = ticketRepository;
+    }
 
     public void generate(Ticket ticket) {
         ticketRepository.save(ticket);

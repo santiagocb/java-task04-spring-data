@@ -3,7 +3,6 @@ package com.ticketland.services;
 import com.ticketland.entities.Event;
 import com.ticketland.exceptions.UserNotFoundException;
 import com.ticketland.repos.EventRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -15,8 +14,11 @@ import java.util.stream.StreamSupport;
 @Service
 public class EventService {
 
-    @Autowired
     private EventRepository eventRepository;
+
+    public EventService(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
+    }
 
     @Transactional
     public Event create(Event event) {

@@ -66,4 +66,9 @@ public class BookingFacade {
         System.out.println("All events: ");
         eventService.findAll().forEach(e -> System.out.println(e.getId() + " " + e.getName() + " " + e.getTicketPrice()));
     }
+
+    public void showTicketsByUserAccountId(String userAccountId) {
+        System.out.printf("All tickets of User with ID %s%n", userAccountId);
+        ticketService.findTicketsByAccountUserId(userAccountId).forEach(t -> System.out.println(t.getId() + " User:" + t.getUser().getId() + " Event:" + t.getEvent().getId()));
+    }
 }

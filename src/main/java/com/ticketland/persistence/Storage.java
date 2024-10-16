@@ -2,8 +2,8 @@ package com.ticketland.persistence;
 
 import com.ticketland.persistence.util.impl.CSVEventDataReader;
 import com.ticketland.persistence.util.impl.CSVUserDataReader;
-import com.ticketland.repos.EventRepository;
-import com.ticketland.repos.UserRepository;
+import com.ticketland.services.EventService;
+import com.ticketland.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -16,9 +16,9 @@ import javax.annotation.PostConstruct;
 public class Storage {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
     @Autowired
-    private EventRepository eventRepository;
+    private EventService eventService;
 
     @Value("${users.file.path}")
     private String userFilePath;
@@ -34,7 +34,7 @@ public class Storage {
 
     @PostConstruct
     private void init() {
-        csvUserDataReader.getDataFromCSV(userFilePath).forEach(u -> userRepository.save(u));
-        csvEventDataReader.getDataFromCSV(eventsFilePath).forEach(e -> eventRepository.save(e));
+        csvUserDataReader.getDataFromCSV(userFilePath).forEach(u -> userService.register(u));
+        csvEventDataReader.getDataFromCSV(eventsFilePath).forEach(e -> eventService.create(e));
     }
 }

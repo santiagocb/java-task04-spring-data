@@ -20,10 +20,12 @@ public class Application {
         BookingFacade bookingFacade = context.getBean(BookingFacade.class);
 
         bookingFacade.createAccount("01");
+        bookingFacade.createAccount("03");
         bookingFacade.createAccount("04");
 
         // Refill account existing accounts
         bookingFacade.refillAccount("01", 1000);
+        bookingFacade.refillAccount("03", 1000);
         bookingFacade.refillAccount("04", 100);
 
         // Show all events
@@ -31,6 +33,11 @@ public class Application {
 
         // Book a ticket successfully
         bookingFacade.bookTicket("01", "001");
+        bookingFacade.bookTicket("01", "002");
+        bookingFacade.bookTicket("03", "001");
+        bookingFacade.bookTicket("03", "002");
+        bookingFacade.bookTicket("01", "001");
+        bookingFacade.bookTicket("01", "004");
 
         // Show all user accounts
         bookingFacade.showAllUserAccounts();
@@ -44,6 +51,9 @@ public class Application {
         } catch (InsufficientFundsException e) {
             System.out.println("User account with ID 04 does not have enough money for event 004");
         }
+
+        // Show tickets of user 01
+        bookingFacade.showTicketsByUserAccountId("01");
 
         DatabaseSetup databaseSetup = context.getBean(DatabaseSetup.class);
         databaseSetup.dropTables();
