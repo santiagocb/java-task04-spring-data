@@ -1,4 +1,4 @@
-package com.ticketland.repos;
+package com.ticketland.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

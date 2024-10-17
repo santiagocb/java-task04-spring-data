@@ -1,8 +1,7 @@
 package com.ticketland.services;
 
 import com.ticketland.entities.Event;
-import com.ticketland.exceptions.UserNotFoundException;
-import com.ticketland.repos.EventRepository;
+import com.ticketland.repositories.EventRepository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -36,7 +35,7 @@ public class EventService {
     @Transactional()
     public Event findByEventId(String eventId) {
         return eventRepository.findById(eventId)
-                .orElseThrow(() -> new UserNotFoundException("Event not found."));
+                .orElseThrow(() -> new EntityNotFoundException("Event not found."));
     }
 
     @Transactional

@@ -14,7 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.ticketland.repos")
+@EnableJpaRepositories(basePackages = "com.ticketland.repositories")
 @EnableTransactionManagement
 public class JpaConfig {
     @Bean
@@ -22,7 +22,6 @@ public class JpaConfig {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
 
-        // Scan the package containing your entity classes
         em.setPackagesToScan("com.ticketland.entities");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();

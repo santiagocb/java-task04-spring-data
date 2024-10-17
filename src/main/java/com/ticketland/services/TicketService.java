@@ -1,10 +1,10 @@
 package com.ticketland.services;
 
 import com.ticketland.entities.Ticket;
-import com.ticketland.exceptions.UserNotFoundException;
-import com.ticketland.repos.TicketRepository;
+import com.ticketland.repositories.TicketRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -20,11 +20,6 @@ public class TicketService {
 
     public void generate(Ticket ticket) {
         ticketRepository.save(ticket);
-    }
-
-    public Ticket findTicketById(String ticketId) {
-        return ticketRepository.findById(ticketId)
-                .orElseThrow(() -> new UserNotFoundException("Ticket not found."));
     }
 
     public List<Ticket> findTicketsByAccountUserId(String userAccountId) {

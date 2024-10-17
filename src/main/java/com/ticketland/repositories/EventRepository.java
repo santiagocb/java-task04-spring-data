@@ -1,4 +1,4 @@
-package com.ticketland.repos;
+package com.ticketland.repositories;
 
 import com.ticketland.entities.Event;
 import org.springframework.data.repository.CrudRepository;

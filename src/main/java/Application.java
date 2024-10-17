@@ -30,7 +30,7 @@ public class Application {
         // Show all events
         bookingFacade.showAllEvents();
 
-        // Book a ticket successfully
+        // Book tickets successfully
         bookingFacade.bookTicket("01", "001");
         bookingFacade.bookTicket("01", "002");
         bookingFacade.bookTicket("03", "001");
