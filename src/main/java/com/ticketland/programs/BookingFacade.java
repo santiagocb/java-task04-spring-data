@@ -18,7 +18,6 @@ public class BookingFacade {
 
     public static final Logger logger = LoggerFactory.getLogger(BookingFacade.class);
 
-
     private final UserAccountService userAccountService;
     private final EventService eventService;
     private final TicketService ticketService;
@@ -53,22 +52,31 @@ public class BookingFacade {
     }
 
     public void showAllUserAccounts() {
-        System.out.println("All user accounts: ");
-        userAccountService.findAll().forEach(u -> System.out.println(u.getId() + " Balance:" + u.getBalance() + " User:" + u.getUser().getName()));
+        logger.info("All user accounts: [{}] {}",
+                userAccountService.findAll().size(),
+                userAccountService.findAll().stream().map(u -> u.getId() + " Balance:" + u.getBalance() + " User:" + u.getUser().getName()).toList()
+        );
     }
 
     public void showAllTickets() {
-        System.out.println("All tickets: ");
-        ticketService.findAll().forEach(t -> System.out.println(t.getId() + " User:" + t.getUser().getId() + " Event:" + t.getEvent().getId()));
+        logger.info("All tickets: [{}] {}",
+                ticketService.findAll().size(),
+                ticketService.findAll().stream().map(t -> t.getId() + " User:" + t.getUser().getId() + " Event:" + t.getEvent().getId()).toList()
+        );
     }
 
     public void showAllEvents() {
-        System.out.println("All events: ");
-        eventService.findAll().forEach(e -> System.out.println(e.getId() + " " + e.getName() + " " + e.getTicketPrice()));
+        logger.info("All events: [{}] {}",
+                eventService.findAll().size(),
+                eventService.findAll().stream().map(e -> e.getId() + " " + e.getName() + " " + e.getTicketPrice()).toList()
+        );
     }
 
     public void showTicketsByUserAccountId(String userAccountId) {
-        System.out.printf("All tickets of User with ID %s%n", userAccountId);
-        ticketService.findTicketsByAccountUserId(userAccountId).forEach(t -> System.out.println(t.getId() + " User:" + t.getUser().getId() + " Event:" + t.getEvent().getId()));
+        logger.info("All tickets of User with ID {}: [{}] {}",
+                userAccountService,
+                ticketService.findTicketsByAccountUserId(userAccountId).size(),
+                ticketService.findTicketsByAccountUserId(userAccountId).stream().map(t -> t.getId() + " User:" + t.getUser().getId() + " Event:" + t.getEvent().getId()).toList()
+        );
     }
 }

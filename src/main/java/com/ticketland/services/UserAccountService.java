@@ -3,6 +3,8 @@ package com.ticketland.services;
 import com.ticketland.entities.UserAccount;
 import com.ticketland.exceptions.UserNotFoundException;
 import com.ticketland.repos.UserAccountRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +13,9 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class UserAccountService {
+
+    public static final Logger logger = LoggerFactory.getLogger(UserAccountService.class);
+
 
     private UserAccountRepository userAccountRepository;
 
@@ -29,7 +34,7 @@ public class UserAccountService {
     public void refillBalance(String userId, double amount) {
         UserAccount account = userAccountRepository.findByUserId(userId)
                 .orElseThrow(() -> new UserNotFoundException("User account not found."));
-        System.out.println("Added to the balance: " + amount);
+        logger.info("Added {} to the balance of User {}", amount, userId);
         account.setBalance(account.getBalance() + amount);
         userAccountRepository.save(account);
     }

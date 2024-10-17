@@ -13,12 +13,11 @@ public class Application {
 
     public static void main(String[] args) {
 
-        logger.info("Hola mundo");
-
         ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
         BookingFacade bookingFacade = context.getBean(BookingFacade.class);
 
+        // Create accounts of existing users
         bookingFacade.createAccount("01");
         bookingFacade.createAccount("03");
         bookingFacade.createAccount("04");
@@ -49,7 +48,7 @@ public class Application {
         try {
             bookingFacade.bookTicket("04", "004");
         } catch (InsufficientFundsException e) {
-            System.out.println("User account with ID 04 does not have enough money for event 004");
+           logger.info("User account with ID 04 does not have enough money for event 004");
         }
 
         // Show tickets of user 01
