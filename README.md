@@ -20,6 +20,8 @@ The target of this exercise is to practice Spring Data Access with Java 17.
 4. Run command to stop Docker execution: `docker stop lil-postgres`
 
 ## Main Output
+![Screenshot 2024-10-16 at 11 20 06 PM](https://github.com/user-attachments/assets/1cb40afb-ad45-448d-917a-7ceabf4774e1)
 
 
 ## Tests Output
+![Screenshot 2024-10-16 at 11 19 24 PM](https://github.com/user-attachments/assets/3c91c3a1-fbf4-4733-8357-f77f47b10cf8)
